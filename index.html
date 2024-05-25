@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Resize</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="canvas"></canvas>
+  </body>
+  <script>
+    var canvas = document.querySelector(".canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var c = canvas.getContext("2d");
+
+    c.fillStyle = "rgba(255,0,0,0.5)";
+    c.fillRect(100, 100, 100, 100);
+    c.fillStyle = "rgba(255,0,0,1)";
+    c.fillRect(400, 400, 100, 100);
+    console.log(canvas);
+
+    //Line
+    c.beginPath();
+    c.moveTo(50, 300);
+    c.lineTo(300, 100);
+    c.lineTo(400, 400);
+    c.strokeStyle = "#fa34a3";
+    c.stroke();
+
+    //Arc / Circle
+    c.beginPath();
+    c.arc(300, 300, 30, 0, Math.PI * 2, false);
+    c.strokeStyle = "red";
+    c.stroke();
+
+    for (var i = 0; i < 3000; i++) {
+      var x = Math.random() * window.innerWidth;
+      var y = Math.random() * window.innerHeight;
+      const randomColor =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+      c.beginPath();
+      c.arc(x, y, 30, 0, Math.PI * 2, false);
+      c.strokeStyle = randomColor;
+      c.stroke();
+    }
+
+    console.log(randomColor);
+  </script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation in Canvas</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+  <body>
+    <canvas class="canvas"> </canvas>
+  </body>
+  <script>
+    const canvas = document.querySelector("canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const c = canvas.getContext("2d");
+
+    var x = 200;
+    var y = 200;
+    var dx = 10;
+    var dy = 10;
+    var raduis = 30;
+    function animation() {
+      requestAnimationFrame(animation);
+
+      c.clearRect(0, 0, innerWidth, innerHeight);
+      c.beginPath();
+      c.arc(x, y, raduis, 0, Math.PI * 2, false);
+      c.strokeStyle = "red";
+
+      c.stroke();
+      if (x + raduis > innerWidth || x - raduis < 0) {
+        dx = -dx;
+      }
+      if (y + raduis > innerHeight || y - raduis < 0) {
+        dy = -dy;
+      }
+      x += dx;
+      y += dy;
+    }
+
+    animation();
+  </script>
+</html>
